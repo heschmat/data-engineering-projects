@@ -6,8 +6,46 @@ A startup called Sparkify wants to analyze the data they've been collecting on s
 They'd like to create a Postgres database with tables designed to optimize queries on song play analysis. Your role is to create a __database schema__ and __ETL pipeline__, with Python, for this analysis. 
 
 ## Project Description
-To complete the project, you will need to __define fact and dimension tables__ for a __star schema__ for a particular analytic focus, and write an ETL pipeline that transfers data from files in two local directories into these tables in Postgres using Python and SQL.
-![ERD diagram]("./erd-diagram.png")
+To complete the project, you will need to __define fact and dimension tables__ for a __star schema__ for a particular analytic focus, and write an ETL pipeline that transfers data from files in two local directories into these tables in Postgres using Python and SQL.   
+
+<img src="erd-diagram.png" alt="ERD Diagram" width="800"/>
+
+## Data Description
+There are two sources of data in this project: a sample `song_data` can bee seen bellow. 
+```
+{'num_songs': 1,
+ 'artist_id': 'ARD7TVE1187B99BFB1',
+ 'artist_latitude': None,
+ 'artist_longitude': None,
+ 'artist_location': 'California - LA',
+ 'artist_name': 'Casual',
+ 'song_id': 'SOQLGFP12A58A7800E',
+ 'title': 'OAKtown',
+ 'duration': 259.44771,
+ 'year': 0}
+ ```
+    
+ The `log_data` is a 
+ ```
+ {'artist': None,
+ 'auth': 'Logged In',
+ 'firstName': 'Kaylee',
+ 'gender': 'F',
+ 'itemInSession': 0,
+ 'lastName': 'Summers',
+ 'length': None,
+ 'level': 'free',
+ 'location': 'Phoenix-Mesa-Scottsdale, AZ',
+ 'method': 'GET',
+ 'page': 'Home',
+ 'registration': 1540344794796.0,
+ 'sessionId': 139,
+ 'song': None,
+ 'status': 200,
+ 'ts': 1541106106796,
+ 'userAgent': '"Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.153 Safari/537.36"',
+ 'userId': '8'}
+ ```
 
 ## File descriptions
 `sql_queries.p` contains all the sql queries; the queries here will be used to create the tables, and in ETL pipeline.   
