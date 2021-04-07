@@ -35,7 +35,7 @@ user_table_create = (
 song_table_create = (
     """ CREATE TABLE IF NOT EXISTS songs (
     song_id varchar PRIMARY KEY,
-    title varchar,
+    title varchar NOT NULL,
     artist_id varchar NOT NULL,
     year int,
     duration int
@@ -46,7 +46,7 @@ song_table_create = (
 artist_table_create = (
     """ CREATE TABLE IF NOT EXISTS artists (
     artist_id varchar PRIMARY KEY,
-    name varchar,
+    name varchar NOT NULL,
     location varchar,
     latitude float,
     longitude float
@@ -68,7 +68,6 @@ time_table_create = (
 )
 
 # INSERT RECORDS ===============================================
-
 songplay_table_insert = (
     "INSERT INTO songplays (start_time, "
     "user_id, level, song_id, artist_id, session_id, location, user_agent) "
@@ -102,15 +101,13 @@ time_table_insert = (
 )
 
 # FIND SONGS ===================================================
-
 song_select = (
-    "SELECT song_id, artists.artist_id FROM songs "
-    "INNER JOIN artists ON songs.artist_id = artists.artist_id "
-    "WHERE title = %s AND name = %s AND duration = %s;"
+    "SELECT s.song_id song_id, s.artist_id artist_id FROM songs s "
+    "INNER JOIN artists a ON s.artist_id = a.artist_id "
+    "WHERE s.title = %s AND a.name = %s AND s.duration = %s;"
 )
 
 # QUERY LISTS ==================================================
-
 create_table_queries = [
     songplay_table_create,
     user_table_create,
