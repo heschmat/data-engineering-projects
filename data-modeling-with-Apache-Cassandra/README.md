@@ -51,6 +51,6 @@ A sample values for such columns is like:
 
 
 ## File Descriptions
-`helper.py` helper functions to drop, create and populate the tables.
-`etl.ipynb` Iterates through each event file  and generates a single csv file - `event_datafile_new.csv`. This notebook contains detailed instructions about the ETL processes for each of the tables.
-`event_datafile_new.csv` 
+- `helper.py` helper functions to drop, create and populate the tables.
+- `etl.ipynb` Iterates through each event file  and generates a single csv file - `event_datafile_new.csv`. This notebook contains detailed instructions about the ETL processes for each of the tables.
+- `event_datafile_new.csv` This file is the centralized file generated from a `event_data`.
