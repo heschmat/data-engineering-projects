@@ -45,6 +45,9 @@ def process_log_file(cur, filepath):
     # Filter by NextSong action.
     dflog = dflog[dflog['page'] == 'NextSong']
     
+    # Round the song duration/length to nearest integer.
+    dflog['length'] = dflog['length'].round().astype('int')
+    
     # Convert timestamp column to datetime
     dflog['time_stamp'] = pd.to_datetime(dflog['ts'], unit= 'ms')
     # Get these columns: hour, day, week, month, year, weekday
@@ -103,21 +106,27 @@ def process_data(cur, conn, filepath, func):
 
     # get total number of files found
     num_files = len(all_files)
-    print('{} files found in {}'.format(num_files, filepath))
+    print(f'\n{num_files} files found in {filepath}')
 
     # iterate over files and process
-    for i, datafile in enumerate(all_files, 1):
+    for i, datafile in enumerate(all_files, start= 1):
         func(cur, datafile)
         conn.commit()
-        print('{}/{} files processed.'.format(i, num_files))
+        if i % 10 == 0:
+            print(f'{i}/{num_files} files processed.')
 
 
 def main():
-    conn = psycopg2.connect("host=127.0.0.1 dbname=sparkifydb user=student password=student")
+    q = "host=127.0.0.1 dbname=sparkifydb user=student password=student"
+    conn = psycopg2.connect(q)
     cur = conn.cursor()
-
-    process_data(cur, conn, filepath= 'data/song_data', func= process_song_file)
-    process_data(cur, conn, filepath= 'data/log_data', func= process_log_file)
+    
+    # Process song_data.
+    process_data(cur, conn, filepath= 'data/song_data',
+                 func= process_song_file)
+    # Process log data.
+    process_data(cur, conn, filepath= 'data/log_data',
+                 func= process_log_file)
 
     conn.close()
 
