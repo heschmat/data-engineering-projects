@@ -47,7 +47,7 @@ There are two sources of data in this project: a sample `song_data` can bee seen
  'userId': '8'}
  ```
 
-## File descriptions
+## File Descriptions
 `sql_queries.p` contains all the sql queries; the queries here will be used to create the tables, and in ETL pipeline.   
 `create_tables.py` drops and creates the tables. Run this file to reset the tables before running the ETL script.
 `etl.ipynb` reads and processes a single file from `song_data` and `log_data` and loads the data into the tables. This notebook contains detailed instructions on the ETL process for each of the tables.
